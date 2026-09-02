@@ -7,10 +7,10 @@ from test import testModell
 
 
 agent = agent()
-agent.loadModel("bestModelForbedret.pth")
-agent.epsilon = 0.5
+# agent.loadModel("bestModelForbedret.pth")
+# agent.epsilon = 1
 
-numberOfEpisodes = 100_000
+numberOfEpisodes = 50_000
 trainingStep = 0
 score = []
 runde = []
@@ -59,8 +59,8 @@ for episode in range(numberOfEpisodes):
         if trainingStep % 1000 == 0:
             agent.updateTargetModel()
 
-        
-         
+    # Tester ny reward så kommenterer ut dette    
+    """    
     if (episode + 1) % 30_000 == 0:
         # Lagrer epsilon
         epsilonMid = agent.epsilon
@@ -76,6 +76,8 @@ for episode in range(numberOfEpisodes):
 
         # Setter tilbake epislon
         agent.epsilon= epsilonMid
+    """
+
 
     agent.reduceEpsilon()
 
@@ -85,6 +87,7 @@ for episode in range(numberOfEpisodes):
     runde.append(episode + 1)
     maxTile.append(np.max(game.board))
 
+agent.saveModel("nyReward.pth")
 
 fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 

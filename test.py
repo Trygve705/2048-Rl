@@ -53,7 +53,7 @@ def testModell(Beste, ny):
     snittNy = sum(scoresNy)/len(scoresNy)
     snittGammel = sum(scoresGammel)/len(scoresGammel)
 
-    if snittNy > (snittGammel * 1.05):
+    if snittNy > (snittGammel * 0.90):
         return True
     else:
         return False

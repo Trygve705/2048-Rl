@@ -22,6 +22,9 @@ class game2048:
                 self.board[indeks1, indeks2] = 4
         self.gameover = False
 
+        values = 1 ** np.arange(1, 17)
+        self.rewardBoard = values.reshape(4,4)
+
     def reset(self):
         self.score = 0 
         self.gameover = False
@@ -169,7 +172,9 @@ class game2048:
         if validMove:
             self.addTile()
 
-        reward = self.score - oldScore
+        reward = self.score - oldScore + np.sum(self.board * self.rewardBoard)
+
+        
 
         return self.board, reward, self.gameover, validMove
 
