@@ -64,7 +64,8 @@ class game2048:
 
         
 
-
+    def getPositionReward(self):
+        return np.sum(self.board * self.rewardBoard)
                     
 
     def moveRight(self):
@@ -152,6 +153,7 @@ class game2048:
     def step(self, action):
         oldScore = self.score
         oldBoard = self.board.copy()
+        oldBoardScore = self.getPositionReward()
 
         if action == 0:
             self.moveRight()
@@ -172,7 +174,12 @@ class game2048:
         if validMove:
             self.addTile()
 
-        reward = self.score - oldScore + np.sum(self.board * self.rewardBoard)
+        newPositionReward = self.getPositionReward()
+
+
+        # reward = self.score - oldScore
+
+        reward = self.score - oldScore + (newPositionReward - oldBoardScore)
 
         
 

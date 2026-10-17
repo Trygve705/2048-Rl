@@ -7,10 +7,10 @@ from test import testModell
 
 
 agent = agent()
-# agent.loadModel("bestModelForbedret.pth")
-# agent.epsilon = 1
+agent.loadModel("nyReward.pth")
+agent.epsilon = 1
 
-numberOfEpisodes = 50_000
+numberOfEpisodes = 70_000
 trainingStep = 0
 score = []
 runde = []
